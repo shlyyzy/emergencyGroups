@@ -12,14 +12,14 @@ export const safehubsSlice = createSlice({
       },
       deleteHub: (state, action) => {
           // pass a hub id to delete
-        state.hubs = state.hubs.filter(hub => hub.id != action.payload)
+        state.hubs = state.hubs.filter(hub => hub.id !== action.payload)
       }
     }
   })
   
-  export const { addHub, deleteHub } = safehubsSlice.actions
-  
-  // selector
-  export const selectHubs = state => state.counter.hubs;
+export const { addHub, deleteHub } = safehubsSlice.actions
 
-  export default safehubsSlice.reducer
+// selector
+export const selectHubs = state => state.safehubs.hubs;
+
+export default safehubsSlice.reducer

@@ -6,10 +6,10 @@
     "google-maps-react": "^2.0.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-native-radar": "^3.0.4",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^2.1.8"
+    "react-scripts": "^2.1.8",
+    "redux": "^4.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
