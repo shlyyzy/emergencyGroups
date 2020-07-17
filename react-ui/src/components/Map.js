@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Map as GMap, GoogleApiWrapper } from 'google-maps-react'
 import { addHub, deleteHub, selectHubs } from '../features/safehubsSlice'
 
+const API_KEY = 'AIzaSyD65_WpJmvtVbVTVNSreIvx7ZMbuvmyS_4'
+
 // export class Map extends Component {
 // const Map = (props) => {
 export function Map(props) {
@@ -17,6 +19,7 @@ export function Map(props) {
             return null;
         }
         dispatch(addHub(hubName));
+        // add it to the map
     }
 
     const renderHubs = (list) => {
@@ -68,5 +71,5 @@ export function Map(props) {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyD65_WpJmvtVbVTVNSreIvx7ZMbuvmyS_4'
+    apiKey: API_KEY
 })(Map);
