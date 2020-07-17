@@ -41,9 +41,9 @@ function App() {
         <br/>
         <Switch>
           <Route exact path="/"></Route>
-          <Route path="/chat"></Route>
-          <Route path="/map"></Route>
-          <Route path="/info"></Route>
+          <Route path="/chat" component={Chat}></Route>
+          <Route path="/map" component={Map}></Route>
+          <Route path="/info" component={Info}></Route>
         </Switch>
       </div>
     </Router>
