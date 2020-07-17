@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -30,38 +30,14 @@ function App() {
   }, [fetchData]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        { process.env.NODE_ENV === 'production' ?
-            <p>
-              This is a production build from create-react-app.
-            </p>
-          : <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-        }
-        <p>{'« '}<strong>
-          {isFetching
-            ? 'Fetching message from API'
-            : message}
-        </strong>{' »'}</p>
-        <p><a
-          className="App-link"
-          href="https://github.com/mars/heroku-cra-node"
-        >
-          React + Node deployment on Heroku
-        </a></p>
-        <p><a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a></p>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Route exact path="/"></Route>
+        <Route path="/chat"></Route>
+        <Route path="/map"></Route>
+        <Route path="/info"></Route>
+      </div>
+    </Router>
   );
 
 }
