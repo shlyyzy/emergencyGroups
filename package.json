@@ -1,7 +1,7 @@
 {
-  "name": "heroku-cra-node",
+  "name": "emergencyGroups",
   "version": "3.0.0",
-  "description": "How to use create-react-app with a custom Node API on Heroku",
+  "description": "Find My Friends meetup chat app",
   "engines": {
     "node": "10.x"
   },
@@ -14,12 +14,13 @@
     "react-ui/node_modules"
   ],
   "dependencies": {
-    "express": "^4.16.4",
-    "nodemon": "^2.0.4"
+    "express": "^4.15.2",
+    "nodemon": "^2.0.4",
+    "socket.io": "^2.3.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mars/heroku-cra-node.git"
+    "url": "https://github.com/shlyyzy/emergencyGroups"
   },
   "keywords": [
     "node",

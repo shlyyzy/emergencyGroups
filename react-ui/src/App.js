@@ -40,7 +40,7 @@ function App() {
         <Navbar />
         <br/>
         <Switch>
-          <Route exact path="/"></Route>
+          <Route exact path="/" component={Home}></Route>
           <Route path="/chat" component={Chat}></Route>
           <Route path="/map" component={Map}></Route>
           <Route path="/info" component={Info}></Route>
