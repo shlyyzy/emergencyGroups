@@ -2,6 +2,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 
+import Navbar from './components/Navbar';
+import Chat from './components/Chat';
+import Map from './components/Map';
+import Info from './components/Info';
+
 function App() {
   const [message, setMessage] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
@@ -32,10 +37,14 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Route exact path="/"></Route>
-        <Route path="/chat"></Route>
-        <Route path="/map"></Route>
-        <Route path="/info"></Route>
+        <Navbar />
+        <br/>
+        <Switch>
+          <Route exact path="/"></Route>
+          <Route path="/chat"></Route>
+          <Route path="/map"></Route>
+          <Route path="/info"></Route>
+        </Switch>
       </div>
     </Router>
   );
