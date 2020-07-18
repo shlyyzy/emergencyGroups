@@ -1,0 +1,25 @@
+.header {
+    background-color: #FFF;
+    color: #3754B9;
+    height: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 5vw;
+}
+
+.header-left {
+    flex-direction: column;
+    text-align: left;
+}
+
+.header-left p {
+    font-size: 3vh;
+    padding: 0;
+}
+
+.header-right {
+    flex-direction: column;
+    text-align: right;
+    padding-top: 3.5vh;
+}

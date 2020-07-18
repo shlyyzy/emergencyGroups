@@ -2,7 +2,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 
-import Home from './components/Login/Home';
+import Home from './components/Setup/Home';
+import Join from './components/Setup/Join';
+import Name from './components/Setup/Name';
+import Chatroom from './components/Room/Chatroom';
+import Maproom from './components/Room/Maproom';
 import Chat from './components/Chat';
 import Map from './components/Map/Map';
 import Info from './components/Info';
@@ -39,6 +43,10 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/" component={Home}></Route>
+          <Route path="/join" component={Join}></Route>
+          <Route path="/name" component={Name}></Route>
+          <Route path="/chatroom" component={Chatroom}></Route>
+          <Route path="/maproom" component={Maproom}></Route>
           <Route path="/chat" component={Chat}></Route>
           <Route path="/map" component={Map}></Route>
           <Route path="/info" component={Info}></Route>
