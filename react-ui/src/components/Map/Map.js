@@ -7,8 +7,6 @@ import './Map.css'
 import blue_pin from './bluePin.png'
 import { addHub, deleteHub, selectHubs } from '../../features/safehubsSlice'
 
-// google
-// const API_KEY = 'AIzaSyD65_WpJmvtVbVTVNSreIvx7ZMbuvmyS_4'
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFnZ2llZWUiLCJhIjoiY2tjcXl4N242MGZobTJ5cGR1dWY2dWcxNiJ9.f3sQpEFz1p3zXTQex41bhw';
 const INIT_MAP_SETTINGS = {
     zoom: 15,
