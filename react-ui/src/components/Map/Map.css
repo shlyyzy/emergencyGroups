@@ -1,0 +1,36 @@
+* {
+    /* font-family: Arial, Helvetica, sans-serif 
+    
+    https://stackoverflow.com/questions/32571611/positioning-a-mapbox-leaflet-map-inside-a-container-div
+    http://plnkr.co/edit/qjIAiud3aUF11iQPDKj0?p=preview&preview
+    */
+}
+
+.inputBar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 40;
+}
+
+.mapContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 200;
+    z-index: -1;
+    display: flex;
+}
+
+/* .marker {
+    border: none;
+    cursor: pointer;
+    height: 56px;
+    width: 56px;
+    background-image: url(meetup.png);
+    background-color: rgba(0, 0, 0, 0);
+} */
