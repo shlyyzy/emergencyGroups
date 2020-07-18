@@ -1,3 +1,5 @@
+// test commit july 17
+
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import mapboxgl from 'mapbox-gl'
