@@ -1,0 +1,17 @@
+.component-layout {
+    background-color: pink;
+    color: #3754B9;
+    height: 70vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 5vw;
+};
+
+.component-content {
+    font-size: "20px";
+    color: #FFF;
+    padding: "20px";
+    height: 10vh;
+    width: 100vw;
+}

@@ -10,6 +10,32 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+h1 {
+    font-size: 5vh;
+    padding: 0;
+}
+
+.spacer-1 {
+    padding: 2vh;
+}
+
+.register {
+    background-color:#9CB0E5;
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 5vw;
+}
+
+.register .register-vertical {
+    margin: auto;
+}
+
+.groupName {
+    color: #3754B9;
+}
+
 .App {
-  text-align: center;
+    text-align: center;
 }

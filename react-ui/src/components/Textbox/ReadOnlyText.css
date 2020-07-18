@@ -1,0 +1,46 @@
+.readOnly input {
+    display: block;
+    box-sizing: border-box;
+    border: none;
+    text-align: center;
+    border-radius: 7px;
+    width: 100%;
+    height: 55px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #FAF9FF;
+    background-color: rgba(255, 255, 255, 0.3);
+    outline: none;
+    box-shadow: 0px 4px 20px 0px transparent;
+    transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out, 0.1s padding ease-in-out, 0.3s color ease-in-out;
+    -webkit-appearance: none;
+}
+
+.readOnly input:hover {
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+}
+
+.readOnly input:focus {
+    background-color: #ffffff;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+.readOnly input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.readOnly input::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.readOnly input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.readOnly input:-moz-placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
