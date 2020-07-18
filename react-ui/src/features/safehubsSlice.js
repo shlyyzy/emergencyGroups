@@ -8,10 +8,12 @@ export const safehubsSlice = createSlice({
     reducers: {
       addHub: (state, action) => {
           // pass a hub to add
+        console.log('addHub called!');
         state.hubs = [...state.hubs, action.payload]
       },
       deleteHub: (state, action) => {
           // pass a hub id to delete
+        console.log('deleteHub called!');
         state.hubs = state.hubs.filter(hub => hub.id !== action.payload)
       }
     }
