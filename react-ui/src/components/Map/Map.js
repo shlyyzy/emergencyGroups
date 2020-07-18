@@ -84,6 +84,7 @@ export default function Map(props) {
                 'Authorization': RADAR_IO_KEY
             }
         }).then(res => {
+            console.log(res.data);
             if (res.data.addresses.length > 0) {
                 const coords = [res.data.addresses[0].longitude, res.data.addresses[0].latitude]
                 const newHub = {
@@ -112,6 +113,11 @@ export default function Map(props) {
             color: '#3754B9'
         })
             .setLngLat([hub.lng, hub.lat])
+            .setPopup(new mapboxgl.Popup({
+                offset: 25,
+                closeButton: false
+            })
+                .setText(hub.name))
             .addTo(theMap);
         markers.push(marker);
     }
