@@ -1,0 +1,32 @@
+.home {
+    background-color:#9CB0E5;
+    color: white;
+    height: 100vh;
+    position: relative;
+}
+
+.vertical {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.spacer-1 {
+    padding: 2vh;
+}
+
+.spacer-2 {
+    padding: 1vh;
+}
+
+h1 {
+    font-size: 5vh;
+    padding: 0;
+}
+
+p {
+    font-size: 3vh;
+    padding: 0;
+}
