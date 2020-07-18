@@ -7,7 +7,7 @@ import Join from './components/Setup/Join';
 import Name from './components/Setup/Name';
 import Chatroom from './components/Room/Chatroom';
 import Maproom from './components/Room/Maproom';
-import Chat from './components/Chat';
+import Chat from './components/Chat/Chat';
 import Map from './components/Map/Map';
 import Info from './components/Info';
 
