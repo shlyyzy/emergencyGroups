@@ -1,4 +1,4 @@
-const users = []; // id, name, room => id is unique
+const users = []; // id, name, room => id is unique socket id
 
 // addUser takes id, name, and room and adds user
 // to specified room if name is not already taken in room
