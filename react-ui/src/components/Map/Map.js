@@ -1,140 +1,160 @@
-// test commit july 17
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import mapboxgl from 'mapbox-gl';
+// import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl'
+import axios from 'axios';
 
-import React, { useState, useEffect, useCallback, useRef } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import mapboxgl from 'mapbox-gl'
-import axios from 'axios'
+import { addHub, deleteHub, selectHubs } from '../../features/safehubsSlice';
 
-import './Map.css'
-import blue_pin from './bluePin.png'
-import { addHub, deleteHub, selectHubs } from '../../features/safehubsSlice'
+import "mapbox-gl/dist/mapbox-gl.css";
+import './Map.css';
+import blue_pin from './bluePin.png';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibWFnZ2llZWUiLCJhIjoiY2tjcXl4N242MGZobTJ5cGR1dWY2dWcxNiJ9.f3sQpEFz1p3zXTQex41bhw';
+const MAPBOX_KEY = 'pk.eyJ1IjoibWFnZ2llZWUiLCJhIjoiY2tjcXl4N242MGZobTJ5cGR1dWY2dWcxNiJ9.f3sQpEFz1p3zXTQex41bhw';
+const RADAR_IO_KEY = 'prj_live_sk_b7701a09fafc7cddd512eb58187a56d3b8cd7f77';
+
 const INIT_MAP_SETTINGS = {
     zoom: 15,
     lng: -123.1207,
     lat: 49.2827
 }
-let map;
-let hubData = [
-    {
-        'type': 'Feature',
-        'geometry': {
-            'type': 'Point',
-            'coordinates': [-123.1207, 49.2827] //long,lat
+
+// https://sparkgeo.com/blog/build-a-react-mapboxgl-component-with-hooks/
+
+let hubData = {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-123.1207, 49.2827] // longitude, latitude
+        },
+        "properties": {
+          "name": "Vancouver City Hall"
         }
-        // 'properties': {
-        //     "address": "1471 P St NW",
-        //     "city": "Washington DC",
-        //     "country": "United States"
-        // }
-    },
-    {
-        'type': 'Feature',
-        'geometry': {
-            'type': 'Point',
-            'coordinates': [20, 0]
-        }
-    }
-]
+      }
+    ]
+  }
 
 const bluePin = new Image();
 bluePin.src = blue_pin;
 
+const TEMP_HUBS = [
+    {
+        name: 'Vancouver City Hall, BC',
+        address: '',
+        lng: -123.1207,
+        lat: 49.2827
+    },
+    {
+        name: 'UBC',
+        address: '',
+        lng: -123.2525,
+        lat: 49.2663
+    }
+];
+
 // export class Map extends Component {
 // const Map = (props) => {
 export default function Map(props) {
-    const hubs = useSelector(selectHubs)
-    let counter = 0
-    const dispatch = useDispatch()
-    const [ hubName, setHub ] = useState('Zoom University')
+    const hubs = useSelector(selectHubs);
+    // let counter = 0;
+    const dispatch = useDispatch();
+    const [ hubName, setHub ] = useState('');
+    const [ hubsList, setHubsList ] = useState(TEMP_HUBS);
+    const [map, setMap] = useState(null);
+    const mapContainer = useRef(null);
+    let markers = [];
 
-    let mapContainer = useRef(null)
-    
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("submitting");
+
         if (hubName === '') {
             return null;
         }
-        dispatch(addHub(hubName));
-        // add it to the map
+        setHub(hubName);
+        const addressQueryStr = hubName.trim().replace(/, | |,/gi, "+");
+        console.log(addressQueryStr);
+        // console.log(hubsList);
+        axios.get(`https://api.radar.io/v1/geocode/forward?query=${addressQueryStr}`,
+        {
+            headers: {
+                'Authorization': RADAR_IO_KEY
+            }
+        }).then(res => {
+            console.log(res.data);
+            if (res.data.addresses.length > 0) {
+                const coords = [res.data.addresses[0].longitude, res.data.addresses[0].latitude]
+                const newHub = {
+                    name: hubName,
+                    address: '',
+                    lng: coords[0],
+                    lat: coords[1]
+                }
+                dispatch(addHub(newHub));
+                
+                addMarker(newHub, map);
+
+                map.flyTo({
+                    center: coords,
+                    zoom: INIT_MAP_SETTINGS.zoom
+                });
+                
+                setHubsList([...hubsList, newHub]);
+                console.log(hubsList);
+            }
+        }).catch(err => console.log(err));
     }
 
-    const renderHubs = (list) => {
-        return list.map(hub => (
-            <li key={counter++}>
-                {/* TODO!!!!!! add attributes to hub (address, coordinates, unique id) - make hub object */}
-                <button onClick={()=>{console.log('trying to delete')}}>
-                    X
-                </button>
-                <button onClick={() => {console.log('center at hub')}}>
-                    {hub}
-                </button>
-            </li>
-        ))
+    const addMarker = (hub, theMap) => {
+        const marker = new mapboxgl.Marker({
+            color: '#3754B9'
+        })
+            .setLngLat([hub.lng, hub.lat])
+            .setPopup(new mapboxgl.Popup({
+                offset: 25,
+                closeButton: false
+            })
+                .setText(hub.name))
+            .addTo(theMap);
+        markers.push(marker);
     }
 
     useEffect(() => {
-        map = new mapboxgl.Map({
-            container: mapContainer,
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [INIT_MAP_SETTINGS.lng, INIT_MAP_SETTINGS.lat], //lng, lat
-            zoom: INIT_MAP_SETTINGS.zoom,
-            attributionControl: false
-        });
+        mapboxgl.accessToken = MAPBOX_KEY;
         
-        map.addControl(new mapboxgl.AttributionControl(), 'top-left');
+        const initMap = ({ setMap, mapContainer }) => {
+            const map = new mapboxgl.Map({
+                container: mapContainer.current,
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [INIT_MAP_SETTINGS.lng, INIT_MAP_SETTINGS.lat], //lng, lat
+                zoom: INIT_MAP_SETTINGS.zoom,
+            });
+            
+            map.on("load", () => {
+                setMap(map);
+                map.resize();
+            });
+            
+            hubsList.forEach(hub => {
+                addMarker(hub, map);
+                // const marker = new mapboxgl.Marker({
+                //     color: '#3754B9'
+                // })
+                //     .setLngLat([hub.lng, hub.lat])
+                //     .addTo(map);
+                // markers.push(marker);
+            });        
+        };
+
+        if (!map) initMap({ setMap, mapContainer });
         
-        /*
-        map.on('load', (e) => {
-            if (!map.hasImage('bluePin')) {
-                map.addImage('bluePin', bluePin);
-            }
-
-            // idk why this doesnt work :[
-            // map.addSource('points', {
-            //     'type': 'geojson',
-            //     'data': hubData
-            // });
-
-            map.addSource('points', {
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': [
-                        {
-                            'type': 'Feature',
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': [-123.1207, 49.2827]
-                            }
-                        },
-                        {
-                            'type': 'Feature',
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': [20, 0]
-                            }
-                        }
-                    ]
-                }
-            });
-            map.addLayer({
-                'id': 'safehubs',
-                'type': 'symbol',
-                'source': 'points',
-                'layout': {
-                    'icon-image': 'bluePin'
-                }
-            });
-        });
-        */
-    })
+    }, [map, hubsList])
 
     return (
         <div>
-            this is the map
-            <br/>
             <form onSubmit={handleSubmit}>
                 <input
                     autoFocus
@@ -148,49 +168,14 @@ export default function Map(props) {
                 <input
                     type="submit"
                     value="Submit"
+                    style={{visibility: "hidden"}}
                 />
             </form>
-            <div className="input-bar">
-                {renderHubs(hubs)}
+            <div className="mapContainer">
+                <div ref={el => mapContainer.current = el} className="map"/>
             </div>
-            <div id="map" className="mapContainer-2">
-                <div ref={el => mapContainer = el} className="mapContainer"/>
-            </div>
-            {/* <GMap
-                google={props.google}
-                zoom={15}
-                initialCenter={{
-                    lat: 49.2827,
-                    lng: -123.1207
-                }}
-            /> */}
+            
             
         </div>
     );   
 }
-
-// export default GoogleApiWrapper({
-//     apiKey: API_KEY
-// })(Map);
-
-
-/*
-map.loadImage('./bluepin.png',
-                (err, img) => {
-                    if (err) throw err;
-                    map.addImage('pin', img);
-                    map.addSource('points', {
-                        'type': 'geojson',
-                        'data': hubData
-                    });
-                    map.addLayer({
-                        'id': 'safehubs',
-                        'type': 'symbol',
-                        'source': 'points',
-                        'layout': {
-                            'icon-image': 'pin'
-                        }
-                    })
-                }
-            );
-*/

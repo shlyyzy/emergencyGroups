@@ -26,6 +26,13 @@
     display: flex;
 }
 
+.map {
+    width: 100vw;
+    height: calc(100vh - 80px);
+    top: 10vw;
+    position: absolute;
+}
+
 /* .marker {
     border: none;
     cursor: pointer;
