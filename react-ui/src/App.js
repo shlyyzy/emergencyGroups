@@ -2,8 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 
-import Navbar from './components/Navbar';
-import Home from './components/Home';
+import Home from './components/Login/Home';
 import Chat from './components/Chat';
 import Map from './components/Map';
 import Info from './components/Info';
@@ -38,10 +37,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
-        <br/>
         <Switch>
-          {/* <Route exact path="/" component={Home}></Route> */}
+          <Route exact path="/" component={Home}></Route>
           <Route path="/chat" component={Chat}></Route>
           <Route path="/map" component={Map}></Route>
           <Route path="/info" component={Info}></Route>
