@@ -5,7 +5,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Chat from './components/Chat';
-import Map from './components/Map';
+import Map from './components/Map/Map';
 import Info from './components/Info';
 
 function App() {
