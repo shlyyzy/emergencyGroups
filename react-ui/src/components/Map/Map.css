@@ -66,9 +66,10 @@ http://plnkr.co/edit/qjIAiud3aUF11iQPDKj0?p=preview&preview
 .map {
     width: 100vw;
     /* height: calc(100vh - 80px); */
-    height: 100vh;
+    height: 70vh;
     top: 15vh;
-    /* bottom: 10vh; */
+    bottom: 10vh;
+    padding-bottom: 40px;
     position: relative;
 }
 
