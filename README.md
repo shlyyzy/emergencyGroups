@@ -25,8 +25,8 @@ Use the map to find suggested safe spots, marked in green. You can also mark you
 <img src="https://github.com/shlyyzy/emergencyGroups/blob/master/screenshots/current-loc.png" width="250">
 
 
-Under construction...
-- send your current location in an emergency situation
+Features under construction:
+- send your current location in an emergency situation (the HALP button)
 - send a meetup location
 - securing the chat
 
