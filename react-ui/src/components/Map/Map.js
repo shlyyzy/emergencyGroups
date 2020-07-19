@@ -60,10 +60,11 @@ const TEMP_HUBS = [
 export default function Map(props) {
     const hubs = useSelector(selectHubs);
     // let counter = 0;
+    let homeMarker = null;
     const dispatch = useDispatch();
     const [ hubName, setHub ] = useState('');
     const [ hubsList, setHubsList ] = useState(TEMP_HUBS);
-    const [map, setMap] = useState(null);
+    const [ map, setMap ] = useState(null);
     const mapContainer = useRef(null);
     let markers = [];
 
@@ -95,11 +96,10 @@ export default function Map(props) {
                 }
                 dispatch(addHub(newHub));
                 
-                addMarker(newHub, map);
+                // addMarker(newHub, map);
 
                 map.flyTo({
-                    center: coords,
-                    zoom: INIT_MAP_SETTINGS.zoom
+                    center: coords
                 });
                 
                 setHubsList([...hubsList, newHub]);
@@ -116,15 +116,70 @@ export default function Map(props) {
             .setPopup(new mapboxgl.Popup({
                 offset: 25,
                 closeButton: false
-            })
-                .setText(hub.name))
+                })
+                    .setText(hub.name))
             .addTo(theMap);
+        // console.log("yoooooo: " + marker.getLngLat().lat);
         markers.push(marker);
+    }
+
+    const generateSuggestions = (radius) => {
+
+    }
+
+    const centerCurrentLoc = () => {
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        };
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    const coords = [pos.coords.longitude, pos.coords.latitude];
+                    // console.log(coords);
+                    
+                    map.flyTo({
+                        center: coords
+                    });
+
+                    if (homeMarker !== null) {
+                        // map.removeLayer(homeMarker); <- doesnt work?
+                        homeMarker.remove();
+                    } 
+                    
+                    // if  (homeMarker.getLngLat().lng !== coords[0]
+                    //     && homeMarker.getLngLat().lat !== coords[1])
+                        // const toDelete = homeMarker;
+
+                    homeMarker = new mapboxgl.Marker({
+                        color: '#9CB0E5'
+                    })
+                        .setLngLat(coords)
+                        .setPopup(new mapboxgl.Popup({
+                            offset: 25,
+                            closeButton: false
+                            })
+                                .setText('Current Location'))
+                        .addTo(map);
+
+                    return coords;
+                },
+                (err) => {console.log(err)},
+                options
+            );
+        } else {
+            console.log("This browser does not support geolocation :(");
+        }
     }
 
     useEffect(() => {
         mapboxgl.accessToken = MAPBOX_KEY;
-        
+        // console.log(typeof(getCurrentLoc()));
+
+        generateSuggestions();
+
         const initMap = ({ setMap, mapContainer }) => {
             const map = new mapboxgl.Map({
                 container: mapContainer.current,
@@ -140,12 +195,6 @@ export default function Map(props) {
             
             hubsList.forEach(hub => {
                 addMarker(hub, map);
-                // const marker = new mapboxgl.Marker({
-                //     color: '#3754B9'
-                // })
-                //     .setLngLat([hub.lng, hub.lat])
-                //     .addTo(map);
-                // markers.push(marker);
             });        
         };
 
@@ -160,7 +209,7 @@ export default function Map(props) {
                     autoFocus
                     name="newhub"
                     type="text"
-                    placeholder="Add a safe spot"
+                    placeholder="Search"
                     id="pac-input"
                     value={hubName}
                     onChange={e => setHub(e.target.value)}
@@ -171,6 +220,7 @@ export default function Map(props) {
                     style={{visibility: "hidden"}}
                 />
             </form>
+            <button onClick={() => centerCurrentLoc()}>Current Location</button>
             <div className="mapContainer">
                 <div ref={el => mapContainer.current = el} className="map"/>
             </div>
