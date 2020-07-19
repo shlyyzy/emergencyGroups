@@ -1,31 +1,32 @@
 .component-layout {
     background-color: pink;
     color: #3754B9;
-    height: 100vh;
-    width: 500vw;
-    display: flex;
+    height: 70vh;
+    display: block;
     flex-direction: row;
     justify-content: space-between;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0 5vw;
 };
 
 .component-content {
-    font-size: "20px";
-    color: #FFF;
-    padding: "20px";
-    height: 100vh;
-    width: 600vw;
+  font-size: "20px";
+  color: #FFF;
+  padding: "20px";
 }
-
 
   .chatHeader {
     background-color: #FFFFFF;
     font-family: 'Poppins', sans-serif;
+    align-items: center;
     font-size:16px;
   }
 
   .currentTime {
     font-family: 'Poppins';
+    align-items: center;
     font-size: 12px;
     font-style: bold;
   }
@@ -38,7 +39,6 @@
     line-height: 14px;
     /* identical to box height */
     text-align: center;
-
     color: #828282;
   }
 

@@ -5,7 +5,8 @@
   
   .input {
     border: none;
-    border-radius: 0;
+    border-radius: 5px;
+    border-color:#3754b9;
     padding: 5%;
     width: 100%;
     font-size: 10px;
@@ -16,7 +17,7 @@
     outline: none;
   }
   
-  .sendButton {
+  /* .sendButton {
     color: #fff !important;
     text-transform: uppercase;
     text-decoration: none;
@@ -25,4 +26,5 @@
     display: inline-block;
     border: none;
     width: 20%;
-  }
+    z-index:2;
+  } */
