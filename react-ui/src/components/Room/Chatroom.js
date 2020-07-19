@@ -4,13 +4,12 @@ import Footer from './Footer';
 import Map from '../Map/Map';
 import Chat from '../Chat/Chat';
 
-function Room() {
-
+function Room({location}) {
     return (
         <div className="room">
             <Header/>
-            <Chat/>
-            <Footer/>
+            <Chat location={location}/>
+            <Footer/> 
         </div>
     )
 }

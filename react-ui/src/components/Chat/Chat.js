@@ -49,22 +49,18 @@ const Chat = ({ location }) => {
     }
 
     return (
-        <div className="chatroom">
-            <div className="chatHeader">
+        <div className="component-layout">
+            <div className="component-content">
                 <h4 className="currentTime">{time}</h4>
-                <p className="chatHeaderMessage"> Messages to group members will appear here</p>
-            </div>
-            <div className='outerContainer'>
-                <div className='container'>
-                    <Messages messages={messages} name={name}/>
-                    <InputBox message={message} 
-                            setMessage={setMessage}
-                            sendMessage={sendMessage}
-                    />
-                        
-                </div>
-            </div>
-        </div>
+                <p className="chatHeaderMessage">Messages to group members will appear here</p>
+                        <Messages messages={messages} name={name}/>
+                        <InputBox message={message} 
+                                setMessage={setMessage}
+                                sendMessage={sendMessage}
+                        />
+               
+            </div>    
+        </div>      
     )
 
 }

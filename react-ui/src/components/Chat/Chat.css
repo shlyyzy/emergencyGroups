@@ -1,7 +1,8 @@
 .component-layout {
     background-color: pink;
     color: #3754B9;
-    height: 70vh;
+    height: 100vh;
+    width: 500vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -12,26 +13,10 @@
     font-size: "20px";
     color: #FFF;
     padding: "20px";
-    height: 10vh;
-    width: 100vw;
-}
-.outerContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
-    background-color: #FFFFFF;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: #ffffff;
-    border-radius: 8px;
-    height: 60%;
-    width: 35%;
-  }
+    width: 600vw;
+}
+
 
   .chatHeader {
     background-color: #FFFFFF;
@@ -46,7 +31,7 @@
   }
 
   .chatHeaderMessage {
-    font-family: Roboto,;
+    font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -58,24 +43,24 @@
   }
 
   @media (min-width: 320px) and (max-width: 480px) {
-  .outerContainer {
+  .container {
     height: 100%;
   }
   
   @media (min-width: 480px) and (max-width: 1200px) {
-    .container {
+    .outerContainer {
       width: 60%;
     }
   }
 
-  .container {
+  .container{
     width: 100%;
     height: 100%;
   }
 }
 
 @media (min-width: 480px) and (max-width: 1200px) {
-  .container {
+  .outerContainer {
     width: 60%;
   }
 }
