@@ -30,6 +30,7 @@ const Chat = ({ location, name}) => {
                 alert(error);
             }
         });
+        
 
         
     }, [ENDPOINT, location.search]);
@@ -40,11 +41,17 @@ const Chat = ({ location, name}) => {
         });
     },[]);
 
+    useEffect(() => { // listen for messages on client side
+        socket.on('render', (msgs) => {
+            setMessages(msgs);
+        });
+    },[]);
+
     const sendMessage = (event) => {
         event.preventDefault();
         if (message) {
             console.log(message, messages);
-            socket.emit('sendMessage', message, () => setMessage(''));
+            socket.emit('sendMessage', message, room, () => setMessage(''));
         }
     }
 

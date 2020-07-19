@@ -1,66 +1,43 @@
 .component-layout {
-    background-color: pink;
-    color: #3754B9;
-    height: 70vh;
-    display: block;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 5vw;
+  background-color: pink;
+  color: #3754B9;
+  height: 70vh;
+  display: block;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 5vw;
 };
 
 .component-content {
-  font-size: "20px";
-  color: #FFF;
-  padding: "20px";
+font-size: "20px";
+color: #FFF;
+padding: "20px";
 }
 
-  .chatHeader {
-    background-color: #FFFFFF;
-    font-family: 'Poppins', sans-serif;
-    align-items: center;
-    font-size:16px;
-  }
-
-  .currentTime {
-    font-family: 'Poppins';
-    align-items: center;
-    font-size: 12px;
-    font-style: bold;
-  }
-
-  .chatHeaderMessage {
-    font-family: Roboto, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
-    text-align: center;
-    color: #828282;
-  }
-
-  @media (min-width: 320px) and (max-width: 480px) {
-  .container {
-    height: 100%;
-  }
-  
-  @media (min-width: 480px) and (max-width: 1200px) {
-    .outerContainer {
-      width: 60%;
-    }
-  }
-
-  .container{
-    width: 100%;
-    height: 100%;
-  }
+.chatHeader {
+  background-color: #FFFFFF;
+  font-family: 'Poppins', sans-serif;
+  align-items: center;
+  font-size:16px;
 }
 
-@media (min-width: 480px) and (max-width: 1200px) {
-  .outerContainer {
-    width: 60%;
-  }
+.currentTime {
+  font-family: 'Poppins';
+  align-items: center;
+  font-size: 12px;
+  font-style: bold;
+}
+
+.chatHeaderMessage {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+  text-align: center;
+  color: #828282;
 }

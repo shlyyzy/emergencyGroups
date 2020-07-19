@@ -1,16 +1,15 @@
 .form {
+    display:flex;
     border-top: 2px solid #D3D3D3;
   }
   
   .input {
     border: none;
-    border-radius: 5px;
-    border-color:#3754b9;
+    border-radius: 0;
     padding: 5%;
-    width: 100%;
     font-size: 10px;
+    width: 100%;
     font-family: 'Poppins', sans-serif;
-    bottom:0px;
   }
   
   input:focus, textarea:focus, select:focus{

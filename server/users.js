@@ -1,4 +1,5 @@
 const users = []; // id, name, room => id is unique socket id
+const messages = []; // id, name, message
 
 // addUser takes id, name, and room and adds user
 // to specified room if name is not already taken in room
@@ -32,4 +33,14 @@ const getUsersInRoom = (room) => {
     return users.filter((user) => user.room === room);
 }
 
-module.exports = {addUser: addUser, removeUser: removeUser, getUser: getUser, getUsersInRoom: getUsersInRoom};
+const getMessages = (room) => {
+    //return messages;
+    const list = messages.filter((message) => message.room === room);
+}
+
+const addMessage = (user, room, message) => {
+    const msg = {user, room, message};
+    messages.push(msg);
+}
+
+module.exports = {addUser: addUser, removeUser: removeUser, getUser: getUser, getUsersInRoom: getUsersInRoom, getMessages:getMessages, addMessage: addMessage};
