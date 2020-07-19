@@ -19,7 +19,7 @@ function Home() {
     return (
         <div className="register">
             <div className="register-vertical">
-                <h1>Hi, welcome to emergencyGroups</h1>
+                <h1>Hi, welcome to emergenseaTeams</h1>
                 <p>Create a group to start</p>
                 <div className="spacer-1" />
                 <Register onFormSubmit={(data) => updateInfo(data)}/>
