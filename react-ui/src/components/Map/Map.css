@@ -1,9 +1,46 @@
-* {
-    /* font-family: Arial, Helvetica, sans-serif 
-    
-    https://stackoverflow.com/questions/32571611/positioning-a-mapbox-leaflet-map-inside-a-container-div
-    http://plnkr.co/edit/qjIAiud3aUF11iQPDKj0?p=preview&preview
-    */
+
+/* font-family: Arial, Helvetica, sans-serif 
+
+https://stackoverflow.com/questions/32571611/positioning-a-mapbox-leaflet-map-inside-a-container-div
+http://plnkr.co/edit/qjIAiud3aUF11iQPDKj0?p=preview&preview
+*/
+
+
+
+#form-container {
+    height: 40px;
+}
+
+.searchbar {
+    top: 16vh;
+    position: absolute;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.94);
+    /* width: 10vw; */
+}
+
+#searchSubmit {
+    visibility: hidden;
+    height: 1px;
+}
+
+.searchbar::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: rgb(139, 139, 139);
+}
+.searchbar:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: rgb(139, 139, 139);
+    opacity: 1;
+}
+.searchbar::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: rgb(139, 139, 139);
+    opacity: 1;
+}
+.searchbar:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgb(139, 139, 139);
 }
 
 .inputBar {
@@ -28,9 +65,36 @@
 
 .map {
     width: 100vw;
-    height: calc(100vh - 80px);
-    top: 10vw;
+    /* height: calc(100vh - 80px); */
+    height: 100vh;
+    top: 15vh;
+    /* bottom: 10vh; */
+    position: relative;
+}
+
+#parent {
+    position: relative;
+}
+
+.pin {
+    width: 20px;
+    height: 20px;
     position: absolute;
+    cursor: pointer;
+    right: 14px;
+    top: 46px;
+}
+
+#temp1 {
+    /* width: 29px;
+    top: 170px;
+    position: relative; */
+    position: absolute;
+    display: flex;
+    top: 13px;
+    right: 10px;
+    width: 10px;
+    height: 29px;
 }
 
 /* .marker {
@@ -41,3 +105,4 @@
     background-image: url(meetup.png);
     background-color: rgba(0, 0, 0, 0);
 } */
+
