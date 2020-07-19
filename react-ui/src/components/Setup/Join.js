@@ -1,15 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import QRCode from 'qrcode.react';
 import { useHistory } from 'react-router-dom';
 import ReadOnlyText from '../Textbox/ReadOnlyText';
 
-function Join() {
+function Join({location}) {
     const history = useHistory();
-
     // For form submission, update the parent widget using callback
     function onSubmit() {
-        history.push("/name");        
-    };  
+        history.push({
+            pathname: "/name",
+            state: {room: location.state.room},
+        });
+    }
 
     return (
         <div className="register">

@@ -8,7 +8,7 @@ function Room({location}) {
     return (
         <div className="room">
             <Header/>
-            <Chat location={location}/>
+            <Chat location={location} name={location.state.name}/>
             <Footer/> 
         </div>
     )

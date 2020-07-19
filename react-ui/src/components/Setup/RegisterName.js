@@ -2,16 +2,19 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 
-function RegisterName({ onFormSubmit }) {
+function RegisterName({ onFormSubmit, room }) {
     const { register, handleSubmit, watch, errors } = useForm();
     const history = useHistory();
 
     // For form submission, update the parent widget using callback
     function onSubmit(data) {
         onFormSubmit(data);
-        history.push("/chatroom");
+        history.push({
+            pathname: '/chatroom',
+            search: "?room="+ room,
+            state: {name : data.displayName},
+        });
     };    
-
     // // Making sure we can watch input (debugging)
     // console.log(watch("displayName"));
 

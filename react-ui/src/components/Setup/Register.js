@@ -6,11 +6,14 @@ import './Register.css';
 function Register({ onFormSubmit }) {
     const { register, handleSubmit, watch, errors } = useForm();
     const history = useHistory();
-
+   
     // For form submission, update the parent widget using callback
     function onSubmit(data) {
         onFormSubmit(data);
-        history.push("/join");        
+        history.push({
+            pathname:"/join",
+            state: {room: data.groupName},
+        });
     };    
 
     // // Making sure we can watch input (debugging)
