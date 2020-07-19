@@ -6,7 +6,7 @@ function Footer() {
     const history = useHistory();
 
     function toMap() {
-        history.push("/maproom");        
+        history.push("/map");        
     };
 
     function toChat() {

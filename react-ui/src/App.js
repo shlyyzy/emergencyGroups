@@ -46,9 +46,9 @@ function App() {
           <Route path="/join" component={Join}></Route>
           <Route path="/name" component={Name}></Route>
           <Route path="/chatroom" component={Chatroom}></Route>
-          <Route path="/maproom" component={Maproom}></Route>
+          <Route path="/map" component={Maproom}></Route>
           <Route path="/chat" component={Chat}></Route>
-          <Route path="/map" component={Map}></Route>
+          {/* <Route path="/map" component={Map}></Route> */}
           <Route path="/info" component={Info}></Route>
         </Switch>
       </div>
