@@ -9,8 +9,8 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import './Map.css';
 import PinImg from './pin.png';
 
-const MAPBOX_KEY = 'pk.eyJ1IjoibWFnZ2llZWUiLCJhIjoiY2tjcXl4N242MGZobTJ5cGR1dWY2dWcxNiJ9.f3sQpEFz1p3zXTQex41bhw';
-const RADAR_IO_KEY = 'prj_live_sk_b7701a09fafc7cddd512eb58187a56d3b8cd7f77';
+const MAPBOX_KEY = '';
+const RADAR_IO_KEY = '';
 
 const INIT_MAP_SETTINGS = {
     zoom: 15,
